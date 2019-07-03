@@ -15,6 +15,7 @@
     <script src="/__/firebase/6.2.3/firebase-app.js"></script>
     <script src="/__/firebase/6.2.3/firebase-auth.js"></script>
     <script src="/__/firebase/6.2.3/firebase-firestore.js"></script>
+    <script src="/__/firebase/6.2.3/firebase-storage.js"></script>
     <script src="/__/firebase/init.js"></script>
 
     <!-- Custom Styles -->
@@ -33,7 +34,17 @@
                     <a class="mdl-navigation__link" href="index.html">Home</a>
                     <a class="mdl-navigation__link" href="products.html">Products</a>
                     <a class="mdl-navigation__link" href="create.html">Create Ad</a>
-                    <a class="mdl-navigation__link" href="">Hello User</a>
+                    <a id="demo-menu-lower-left" class="mdl-navigation__link" href="#">
+                        Hello Username
+                        <i class="material-icons">arrow_drop_down</i>
+                    </a>
+                    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                        for="demo-menu-lower-left">
+                        <li class="mdl-menu__item"> <a class="dropdown-item" href="dashboard.html">Visit Dashboard</a>
+                        </li>
+                        <li class="mdl-menu__item "> <a class="dropdown-item" href="cart.html">Visit Cart</a> </li>
+                        <li id="signout" class="mdl-menu__item">Logout</li>
+                    </ul>
                 </nav>
             </div>
         </header>
@@ -43,22 +54,31 @@
                 <h4>Add Product</h4>
 
                 <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet">
+                    <div style="display: flex; flex-direction: column; align-items: center;"
+                        class="mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet">
                         <h5>Product Image</h5>
 
-                        <img style="display: block; margin: 0 auto;" src="https://picsum.photos/256" alt="" srcset="">
+                        <img id="product-image" src="https://picsum.photos/256" alt="" srcset="" width="256"
+                            height="256" />
                         <br>
-                        <input style="display: block; margin: 0 auto;" id="image" type="file" />
+                        <input id="product-image-input" id="image" type="file" />
+
+                        <button id="upload-btn" style="display: none; float: right;"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent my-button"
+                            onclick="uploadImage()">
+                            Upload Image
+                        </button>
+
                     </div>
                     <div class="mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet">
-                        <form action="#">
+                        <form action="#" onsubmit="event.preventDefault()">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="sample3">
-                                <label class="mdl-textfield__label" for="sample3">Name...</label>
+                                <input class="mdl-textfield__input" type="text" id="product-name">
+                                <label class="mdl-textfield__label" for="product-name">Name...</label>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <select class="mdl-textfield__input" id="octane" name="octane">
+                                <select class="mdl-textfield__input" id="product-category" name="product-category">
                                     <option value=""></option>
                                     <option value="vehicles">Vehicles</option>
                                     <option value="mobiles">Mobile Phones & Tablets</option>
@@ -69,29 +89,32 @@
                                     <option value="electronics">Electronics & Videos</option>
                                     <option value="fashion">Fashion & Beauty</option>
                                 </select>
-                                <label class="mdl-textfield__label" for="octane">Category...</label>
+                                <label class="mdl-textfield__label" for="product-category">Category...</label>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="sample3">
-                                <label class="mdl-textfield__label" for="sample3">Product Image...</label>
+                                <input class="mdl-textfield__input" type="text" id="product-image-name">
+                                <label class="mdl-textfield__label" for="product-image-name">Product Image...</label>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield">
-                                <textarea class="mdl-textfield__input" type="text" rows="3" id="sample5"></textarea>
-                                <label class="mdl-textfield__label" for="sample5">Product Description...</label>
+                                <textarea class="mdl-textfield__input" type="text" rows="3"
+                                    id="product-description"></textarea>
+                                <label class="mdl-textfield__label" for="product-description">Product
+                                    Description...</label>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?"
-                                    id="sample4">
-                                <label class="mdl-textfield__label" for="sample4">Cost...</label>
+                                    id="product-cost">
+                                <label class="mdl-textfield__label" for="product-cost">Cost...</label>
                                 <span class="mdl-textfield__error">Input is not a number!</span>
                             </div>
 
                             <!-- Accent-colored raised button with ripple -->
-                            <button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent my-button" style="float: right; margin-right: 200px;">
+                            <button onclick="addProduct()"
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent my-button"
+                                style="float: right; margin-right: 200px;">
                                 Submit
                             </button>
                         </form>
@@ -105,7 +128,7 @@
 
     <!-- Extra Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/create.js"></script>
     <script src="js/custom.js"></script>
 </body>
 

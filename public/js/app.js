@@ -100,7 +100,3 @@ const getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
-
-const storage = firebase.storage()
-
-const storageRef = storage.ref()
