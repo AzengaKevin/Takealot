@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:500&display=swap');
+
+body {
+    font-family: 'Raleway', sans-serif;
+    overflow: hidden;
+}
+
+.my-button {
+    text-transform: none;
+    margin-left: 20px;
+}
+
+
+.demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+}
+
+/* Login Section */
+.login-cover {
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-error,
+#register-error {
+    background: #E91E63;
+    padding: 8px;
+    margin-top: 8px;
+    text-align: center;
+    display: none;
+}
+
+.category,
+.advert {
+    height: 100px;
+    background-image: linear-gradient(to right, #000051, #1a237e, #000051);
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+}
+
+.advert {
+    background-image: linear-gradient(to right, #34515e, #1b1b1b, #34515e);
+}
+
+.category:hover {
+    cursor: pointer;
+    box-shadow: 10px 10px 5px grey;
+}
+
+h4,
+h5 {
+    text-align: center;
+}
+
+#form {
+    display: flex;
+    flex-direction: row;
+}
+
+.mdl-textfield {
+    display: block;
+    margin: 0 auto;
+    width: 60%;
+}
+
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+   
+}
+
+.product{
+    flex-basis: 25%;
+    margin: 20px auto;
+}
+
+.dropdown-item{
+    text-decoration: none;
+    color: #000;
+}

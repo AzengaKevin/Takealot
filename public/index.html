@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Smart Ads</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-indigo.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+  <script src="/__/firebase/6.2.3/firebase-app.js"></script>
+  <script src="/__/firebase/6.2.3/firebase-auth.js"></script>
+  <script src="/__/firebase/6.2.3/firebase-firestore.js"></script>
+  <script src="/__/firebase/6.2.3/firebase-storage.js"></script>
+  <script src="/__/firebase/init.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+
+<body>
+
+  <!-- Login Dialog -->
+  <dialog id="login-dialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Signin</h4>
+    <div id="login-error"></div>
+    <div class="mdl-dialog__content">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="login-email" class="mdl-textfield__input" type="email" />
+        <label class="mdl-textfield__label" for="sample3">Email...</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="login-pwd" class="mdl-textfield__input" type="password" />
+        <label class="mdl-textfield__label" for="sample3">Password...</label>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <!-- Colored raised button -->
+      <button id="login-btn" type="button"
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent my-button">
+        Login
+      </button>
+
+      <button id="register" type="button" class="mdl-button close my-button">Register</button>
+    </div>
+  </dialog>
+
+  <!-- Register Dialog -->
+  <dialog id="register-dialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Signup</h4>
+    <div id="register-error"></div>
+    <div class="mdl-dialog__content">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="register-email" class="mdl-textfield__input" type="email" />
+        <label class="mdl-textfield__label" for="sample3">Email...</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="register-pwd" class="mdl-textfield__input" type="password" />
+        <label class="mdl-textfield__label" for="sample3">Password...</label>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <!-- Colored raised button -->
+      <button id="register-btn" type="button"
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent my-button">
+        Register
+      </button>
+      <button id="login" type="button" class="mdl-button close my-button">Login</button>
+    </div>
+  </dialog>
+
+  <!-- Login Cover -->
+  <div class="login-cover">
+    <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+  </div>
+
+  <!-- The Layout -->
+  <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--waterfall">
+      <!-- Top row, always visible -->
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Smart Ads | Home</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                      mdl-textfield--floating-label mdl-textfield--align-right">
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+          </div>
+        </div>
+      </div>
+
+      <div class="mdl-layout__header-row">
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="products.html">Products</a>
+          <a class="mdl-navigation__link" href="create.html">Create Ad</a>
+          <a id="demo-menu-lower-left" class="mdl-navigation__link" href="#">
+            Hello Username
+            <i class="material-icons">arrow_drop_down</i>
+          </a>
+          <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
+            <li class="mdl-menu__item"> <a class="dropdown-item" href="profile.html">Update Your Profile</a> </li>
+            <li class="mdl-menu__item "> <a class="dropdown-item" href="cart.html">Visit Cart</a> </li>
+            <li id="signout" class="mdl-menu__item">Logout</li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Categories</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="products.html">Vehicles</a>
+        <a class="mdl-navigation__link" href="products.html">Mobile Phones & Tablets</a>
+        <a class="mdl-navigation__link" href="products.html">Home Funiture & Garden</a>
+        <a class="mdl-navigation__link" href="products.html">Real Estate</a>
+        <a class="mdl-navigation__link" href="products.html">Agriculture & Food</a>
+        <a class="mdl-navigation__link" href="products.html">Construction & Industrial</a>
+        <a class="mdl-navigation__link" href="products.html">Electronics & Videos</a>
+        <a class="mdl-navigation__link" href="products.html">Fashion & Beauty</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <!-- Banner -->
+        <div class="banner">
+          <img src="images/bg.jpg" alt="Banner">
+        </div>
+
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--3-col category">Vehicles</div>
+          <div class="mdl-cell mdl-cell--3-col category">Mobile Phones & Tablets</div>
+          <div class="mdl-cell mdl-cell--3-col category">Home Funiture & Garden</div>
+          <div class="mdl-cell mdl-cell--3-col category">Real Estate</div>
+        </div>
+
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--3-col category">Agriculture & Food</div>
+          <div class="mdl-cell mdl-cell--3-col category">Construction & Industrial</div>
+          <div class="mdl-cell mdl-cell--3-col category">Electronics & Videos</div>
+          <div class="mdl-cell mdl-cell--3-col category">Fashion & Beauty</div>
+        </div>
+
+        <h4>Recommended For You</h4>
+
+        <marquee>
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col advert">Agriculture & Food</div>
+            <div class="mdl-cell mdl-cell--2-col advert">Construction & Industrial</div>
+            <div class="mdl-cell mdl-cell--2-col advert">Electronics & Videos</div>
+            <div class="mdl-cell mdl-cell--2-col advert">Fashion & Beauty</div>
+            <div class="mdl-cell mdl-cell--2-col advert">Fashion & Beauty</div>
+            <div class="mdl-cell mdl-cell--2-col advert">Fashion & Beauty</div>
+          </div>
+        </marquee>
+
+
+      </div>
+    </main>
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+
+</html>
