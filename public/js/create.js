@@ -60,6 +60,7 @@ function addProduct(event) {
     const category = $('#product-category').val()
     const image = $('#product-image-name').val()
     const description = $('#product-description').val()
+    const quantity = $('#product-quantity').val()
     const cost = $('#product-cost').val()
 
     const product = {
@@ -68,16 +69,16 @@ function addProduct(event) {
         category,
         image,
         description,
+        quantity,
         cost
     }
-    console.log(product)
+
 
     const db = firebase.firestore()
-    console.log(db)
 
     db.collection("products").add(product)
         .then(docRef => {
-            alert("Product Upload")
+            alert("Product Uploaded succefully")
             console.log(docRef.id)
         })
         .catch(err => {

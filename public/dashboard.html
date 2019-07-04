@@ -49,19 +49,145 @@
         <div class="mdl-layout__drawer">
             <span class="mdl-layout__title">Dashboard</span>
             <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="profile.html">Edit Profile</a>
-                <a class="mdl-navigation__link" href="products.html?user=uid">Your Products</a>
-                <a class="mdl-navigation__link" href="create.html">Add Product</a>
+                <a class="mdl-navigation__link" href="#">Profile</a>
+                <a class="mdl-navigation__link" href="#">Orders</a>
+                <a class="mdl-navigation__link" href="products.html?user=uid">Products</a>
                 <a class="mdl-navigation__link" href="cart.html">Cart</a>
             </nav>
         </div>
         <main class="mdl-layout__content">
-            <p>Content</p>
-            <p>Goes</p>
-            <p>Here</p>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--10-col">
+                    <div id="profile-info">
+                        <div class="mdl-grid">
+                            <div style="display: flex; flex-direction: column; align-items:center;"
+                                class="mdl-cell mdl-cell--4-col">
+                                <h4>Profile Picture</h4>
+                                <img id="avatar" src="https://picsum.photos/256" alt="" srcset="" width="100%">
+                                <input style="display:inline-block; margin-top: 16px;" type="file" name="avatar"
+                                    id="file">
+                                <!-- Colored raised button -->
+                                <button style="margin-top: 16px; display: none;" id="change-image-btn" onclick="uploadAVatar()"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored my-button">
+                                    Change Profile Picture
+                                </button>
+
+                            </div>
+                            <div class="mdl-cell mdl-cell--8-col">
+                                <h4>Other Details</h4>
+                                <div id="other-details" style="margin-left: 32px;" class="pool">
+                                    <div class="detail"><strong>Email:</strong> <span
+                                            id="email">toomuch573@gmail.com</span> <small
+                                            style="color: red; margin-right: 32px; display: inline-block;"
+                                            id="emailVerified">!!Email Not Verified</small></div>
+                                    <div class="detail"><strong>Display Name:</strong> <span id="email">Azenga Kevin
+                                            Kivairu</span></div>
+                                    <div class="detail"><strong>Location:</strong> <span id="email">Kisii, Kenya</span>
+                                    </div>
+                                    <div class="detail"><strong>Products Sold:</strong> <span id="email">None</span>
+                                    </div>
+                                    <div class="detail"><strong>Products Bought:</strong> <span id="email">None</span>
+                                    </div>
+
+
+                                    <button style="margin-top: 16px; float: right;" id="go-to-edit-profile-btn"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored my-button">
+                                        Edit Profile
+                                    </button>
+
+                                </div>
+
+
+                                <div style="display: none;" id="edit-profile" style="margin-left: 32px;" class="pool">
+                                    <div class="detail">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" id="new-name">
+                                            <label class="mdl-textfield__label" for="new-name">Display Name...</label>
+                                        </div>
+                                    </div>
+                                    <div class="detail">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" id="new-location">
+                                            <label class="mdl-textfield__label" for="new-location">Location...</label>
+                                        </div>
+                                    </div>
+                                    <button style="margin-top: 16px; float: right;" id="upolad-details" onclick="uploadDetails()"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored my-button">
+                                        Submit
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--1-col"></div>
+            </div>
+
+            <footer class="mdl-mega-footer">
+                <div class="mdl-mega-footer__middle-section">
+
+                    <div class="mdl-mega-footer__drop-down-section">
+                        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+                        <h1 class="mdl-mega-footer__heading">Features</h1>
+                        <ul class="mdl-mega-footer__link-list">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Partners</a></li>
+                            <li><a href="#">Updates</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="mdl-mega-footer__drop-down-section">
+                        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+                        <h1 class="mdl-mega-footer__heading">Details</h1>
+                        <ul class="mdl-mega-footer__link-list">
+                            <li><a href="#">Specs</a></li>
+                            <li><a href="#">Tools</a></li>
+                            <li><a href="#">Resources</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="mdl-mega-footer__drop-down-section">
+                        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+                        <h1 class="mdl-mega-footer__heading">Technology</h1>
+                        <ul class="mdl-mega-footer__link-list">
+                            <li><a href="#">How it works</a></li>
+                            <li><a href="#">Patterns</a></li>
+                            <li><a href="#">Usage</a></li>
+                            <li><a href="#">Products</a></li>
+                            <li><a href="#">Contracts</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="mdl-mega-footer__drop-down-section">
+                        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+                        <h1 class="mdl-mega-footer__heading">FAQ</h1>
+                        <ul class="mdl-mega-footer__link-list">
+                            <li><a href="#">Questions</a></li>
+                            <li><a href="#">Answers</a></li>
+                            <li><a href="#">Contact us</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="mdl-mega-footer__bottom-section">
+                    <div class="mdl-logo">Title</div>
+                    <ul class="mdl-mega-footer__link-list">
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Privacy & Terms</a></li>
+                    </ul>
+                </div>
+
+            </footer>
         </main>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 
 </html>
