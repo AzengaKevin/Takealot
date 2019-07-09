@@ -55,13 +55,15 @@ function uploadImage(event) {
 }
 
 function addProduct(event) {
+    console.log("Trying to add product...")
     const name = $('#product-name').val()
-    const user =  firebase.auth().currentUser !== null ? firebase.auth().currentUser.uid : "No User"
+    const user = firebase.auth().currentUser !== null ? firebase.auth().currentUser.uid : "No User"
     const category = $('#product-category').val()
     const image = $('#product-image-name').val()
     const description = $('#product-description').val()
     const quantity = $('#product-quantity').val()
     const cost = $('#product-cost').val()
+
 
     const product = {
         name,
@@ -70,9 +72,10 @@ function addProduct(event) {
         image,
         description,
         quantity,
-        cost
+        cost,
+        timestamp: firebase.firestore.Timestamp.fromDate(new Date())
     }
-
+    console.log(product)
 
     const db = firebase.firestore()
 

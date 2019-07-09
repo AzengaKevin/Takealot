@@ -1,14 +1,10 @@
-window.addEventListener('DOMContentLoaded', event => {
-    const app = firebase.app()
-    console.log(app)
-});
-
 $("#go-to-edit-profile-btn").on('click', event => {
     $("#other-details").hide()
     $("#edit-profile").show()
 })
 
 var selectedFile
+const db = firebase.firestore()
 
 
 
@@ -21,7 +17,24 @@ $("#upolad-details").on('click', event => {
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-        $("#avatar").attr("src", user.photoURL? user.photoURL : "https://picsum.photos/256")
+        $("#avatar").attr("src", user.photoURL ? user.photoURL : "https://picsum.photos/256")
+        $("#email").html(user.email)
+
+        if (user.emailVerified) $("#emailVerified").hide()
+        if (user.displayName != null) $("#name").html(user.displayName)
+
+        db.collection("users").doc(user.uid).get()
+            .then(doc => {
+                if (doc.exists) {
+                    $("#location").html(doc.data().location)
+                } else {
+                    console.log("The user does not exist yet")
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
     } else {}
 });
 
@@ -81,19 +94,30 @@ function uploadAVatar() {
 
         });
     });
-
-
 }
 
 function uploadDetails(event) {
-    let currentUser = firebase.auth().currUser
+    let currentUser = firebase.auth().currentUser
+
+    console.log(currentUser)
 
     let newName = $('#new-name').val()
+    let newLocation = $('#new-location').val()
 
-    currUser.updateProfile({
+    currentUser.updateProfile({
         displayName: newName
     }).then(function () {
-        console.log(`Display name updated successfully`)
+        // Add a new document in collection "cities"
+        db.collection("users").doc(currentUser.uid).set({
+                name: newName,
+                location: newLocation
+            })
+            .then(function () {
+                console.log("Firestore profile successfully updated!");
+            })
+            .catch(function (error) {
+                console.error("Error updating firestore: ", error);
+            });
     }).catch(function (error) {
         console.log(`Display name update failed`)
     });

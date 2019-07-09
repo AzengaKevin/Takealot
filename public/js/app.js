@@ -11,8 +11,13 @@ if (!registerDialog.showModal) dialogPolyfill.registerDialog(registerDialog);
 
 
 
+
+
+
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        if (user.displayName != null) $("#username").html(user.displayName)
+
         $('.login-cover').hide()
         loginDialog.close()
 
@@ -26,8 +31,6 @@ $('#login-btn').on('click', event => {
 
     const email = $('#login-email').val()
     const pwd = $('#login-pwd').val()
-
-    // console.log(`Email: ${email} and Password: ${pwd}`)
 
     if (email != "" && pwd != "") {
         loginDialog.close();
@@ -100,3 +103,4 @@ const getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
+

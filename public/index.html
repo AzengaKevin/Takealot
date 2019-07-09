@@ -17,6 +17,9 @@
   <script src="/__/firebase/6.2.3/firebase-storage.js"></script>
   <script src="/__/firebase/init.js"></script>
 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/custom.css">
 </head>
@@ -103,7 +106,7 @@
           <a class="mdl-navigation__link" href="products.html">Products</a>
           <a class="mdl-navigation__link" href="create.html">Create Ad</a>
           <a id="demo-menu-lower-left" class="mdl-navigation__link" href="#">
-            Hello Username
+            Hello <span id="username">Username</span>
             <i class="material-icons">arrow_drop_down</i>
           </a>
           <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
@@ -148,16 +151,11 @@
           <div class="mdl-cell mdl-cell--3-col category">Fashion & Beauty</div>
         </div>
 
-        <h4>Recommended For You</h4>
+        <h4>Newly Fearture Products</h4>
 
         <marquee>
-          <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--2-col advert">Agriculture & Food</div>
-            <div class="mdl-cell mdl-cell--2-col advert">Construction & Industrial</div>
-            <div class="mdl-cell mdl-cell--2-col advert">Electronics & Videos</div>
-            <div class="mdl-cell mdl-cell--2-col advert">Fashion & Beauty</div>
-            <div class="mdl-cell mdl-cell--2-col advert">Fashion & Beauty</div>
-            <div class="mdl-cell mdl-cell--2-col advert">Fashion & Beauty</div>
+          <div id="newly-added-products" class="mdl-grid">
+            
           </div>
         </marquee>
 

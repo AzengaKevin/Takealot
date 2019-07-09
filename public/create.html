@@ -24,6 +24,61 @@
 
 <body>
 
+    <!-- Login Dialog -->
+    <dialog id="login-dialog" class="mdl-dialog">
+        <h4 class="mdl-dialog__title">Signin</h4>
+        <div id="login-error"></div>
+        <div class="mdl-dialog__content">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input id="login-email" class="mdl-textfield__input" type="email" />
+                <label class="mdl-textfield__label" for="sample3">Email...</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input id="login-pwd" class="mdl-textfield__input" type="password" />
+                <label class="mdl-textfield__label" for="sample3">Password...</label>
+            </div>
+        </div>
+        <div class="mdl-dialog__actions">
+            <!-- Colored raised button -->
+            <button id="login-btn" type="button"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent my-button">
+                Login
+            </button>
+
+            <button id="register" type="button" class="mdl-button close my-button">Register</button>
+        </div>
+    </dialog>
+
+    <!-- Register Dialog -->
+    <dialog id="register-dialog" class="mdl-dialog">
+        <h4 class="mdl-dialog__title">Signup</h4>
+        <div id="register-error"></div>
+        <div class="mdl-dialog__content">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input id="register-email" class="mdl-textfield__input" type="email" />
+                <label class="mdl-textfield__label" for="sample3">Email...</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input id="register-pwd" class="mdl-textfield__input" type="password" />
+                <label class="mdl-textfield__label" for="sample3">Password...</label>
+            </div>
+        </div>
+        <div class="mdl-dialog__actions">
+            <!-- Colored raised button -->
+            <button id="register-btn" type="button"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent my-button">
+                Register
+            </button>
+            <button id="login" type="button" class="mdl-button close my-button">Login</button>
+        </div>
+    </dialog>
+
+    <!-- Login Cover -->
+    <div class="login-cover">
+        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+    </div>
+
+
     <div class="mdl-layout mdl-js-layout">
         <header class="mdl-layout__header">
             <div class="mdl-layout-icon"></div>
@@ -35,7 +90,7 @@
                     <a class="mdl-navigation__link" href="products.html">Products</a>
                     <a class="mdl-navigation__link" href="create.html">Create Ad</a>
                     <a id="demo-menu-lower-left" class="mdl-navigation__link" href="#">
-                        Hello Username
+                        Hello <span id="username">Username</span>
                         <i class="material-icons">arrow_drop_down</i>
                     </a>
                     <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
@@ -135,6 +190,7 @@
 
     <!-- Extra Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/create.js"></script>
     <script src="js/custom.js"></script>
 </body>
