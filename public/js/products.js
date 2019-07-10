@@ -1,34 +1,68 @@
-db.collection("products")
-    .onSnapshot(querySnapshot => {
-        var products = [];
-        querySnapshot.forEach(function (doc) {
-            products.push(doc.data())
+const getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
 
-            let product = doc.data()
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
 
-            console.log(doc)
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === null ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
 
-            db.collection("users").doc(product.user).get()
-                .then(doc => {
-                    if (doc.exists) {
-                        addUserToDOM(doc.data().name, product)
-                        console.log("Document data:", doc.data());
-                    } else {
+var param = getUrlParameter("category")
+
+console.log(param)
+
+if (param === null || param === undefined) {
+    db.collection("products")
+        .onSnapshot(querySnapshot => {
+            querySnapshot.forEach(function (doc) {
+                let product = doc.data()
+                db.collection("users").doc(product.user).get()
+                    .then(doc => {
+                        if (doc.exists) {
+                            addUserToDOM(doc.data().name, product)
+                        } else {
+                            addUserToDOM("Username", product)
+                        }
+                    })
+                    .catch(err => {
                         addUserToDOM("Username", product)
-                        console.log("No such document!");
-                    }
-                })
-                .catch(err => {
-                    console.log(err)
-                    addUserToDOM("Username", product)
-                })
+                    })
+            });
 
+        });
+} else {
+    db.collection("products")
+        .where('category', '==', param)
+        .onSnapshot(querySnapshot => {
+            querySnapshot.forEach(function (doc) {
+                let product = doc.data()
+                db.collection("users").doc(product.user).get()
+                    .then(doc => {
+                        if (doc.exists) {
+                            addUserToDOM(doc.data().name, product)
+                        } else {
+                            addUserToDOM("Username", product)
+                        }
+                    })
+                    .catch(err => {
+                        addUserToDOM("Username", product)
+                    })
+
+
+
+            });
 
 
         });
+}
 
 
-    });
 
 function addUserToDOM(owner, product) {
     $("#products-display").append(

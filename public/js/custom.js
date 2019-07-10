@@ -14,7 +14,6 @@ db.collection("products")
     .limit(6)
     .onSnapshot(function (querySnapshot) {
         querySnapshot.forEach(doc => {
-            console.log(doc.data())
             appendAdvert(doc.data())
         });
     });
